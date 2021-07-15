@@ -10,5 +10,6 @@ public class Solution{
     arr[3]=(arr[3]=='?')?'5':arr[3];
     arr[4]=(arr[4]=='?')?'9':arr[4];
   }
-  return arr;
+  string s = new string(arr);
+  return s;
 }
