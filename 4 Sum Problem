@@ -1,0 +1,52 @@
+public class Solution {
+    public IList<IList<int>> FourSum(int[] nums, int target) {
+        IList<IList<int>> res = new List<IList<int>>();
+        int n = nums.Length;
+        Array.Sort(nums);
+        for(int i=0;i<n-3;i++){
+            if(i>0 && nums[i]==nums[i-1]){
+                continue;
+            }
+            for(int j=i+1;j<n-2;j++){
+               // if(j==1 && nums[j]==nums[j-1] &&(j-i)==1){
+                 //   continue;
+                //}
+                if(j>1 && nums[j]==nums[j-1] &&(j-i)>1){
+                    continue;
+                }
+                int k=j+1;
+                int l=n-1;
+                while(k<l){
+                    if(nums[i]+nums[j]+nums[k]+nums[l]-target == 0){
+                       // if(k>2 && nums[k]==nums[k-1]){
+                         //   continue;
+                        //}
+                        List<int> result = new List<int>();
+                        result.Add(nums[i]);
+                        result.Add(nums[j]);
+                        result.Add(nums[k]);
+                        result.Add(nums[l]);
+                        
+                        res.Add(result);  //this is how we use list inside the list........
+                        
+                        
+                      //while(k<l && nums[k] == result.get(2)) ++k;
+                        //while(k<l && nums[l] == result.get(3)) --l;
+                        while(k+1<l-1 && nums[k]==nums[k+1] && nums[l]==nums[l-1]){
+                            k++;l--;
+                        }
+                        k++;l--;
+                    }
+                    else if(nums[i]+nums[j]+nums[k]+nums[l]-target>0){
+                        l--;
+                    }
+                    else{
+                        k++;
+                    }                        
+                }
+            }
+        }
+        IList<IList<int>> distinct = res.Distinct().ToList();
+    return distinct;
+    }    
+}
