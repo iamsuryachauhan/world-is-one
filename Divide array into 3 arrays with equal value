@@ -1,0 +1,50 @@
+public class Solution {
+    public int[] ThreeEqualParts(int[] arr) {
+        int[] ans = new int[]{-1,-1};
+        int numOf1s=0;
+        for(int i=0;i<arr.Length;i++){ //finding the sum of number of 1's present in the given array.....................
+            if(arr[i]==1){
+                numOf1s++;
+            }            
+        }
+        
+        if(numOf1s==0){         //if there are zero number of 1's than simply return index {0,2}............
+            return new int[]{0,2};
+        }
+        
+        if(numOf1s%3 != 0){   //number of 1's should be divided by 3 bcz an array is break down into 3 same valued Sub-array.............
+            return ans;
+        }
+        
+        int numOf1InEach = numOf1s/3;   //finding number of 1 in each array............
+        int numOf1InArr1 = -1;
+        int numOf1InArr2 = -1;
+        int numOf1InArr3 = -1;
+        numOf1s=0;
+        for(int i=0;i<arr.Length;i++){  //this is most imp part
+            if(arr[i]==1){              //here we identifing the index of first 1 in each Sub-array..............
+                numOf1s++;
+                if(numOf1s==1){
+                   numOf1InArr1=i;  
+                }
+                else if(numOf1s == numOf1InEach+1){
+                    numOf1InArr2=i;
+                }
+                else if(numOf1s == 2*numOf1InEach+1){
+                    numOf1InArr3=i;
+                }
+            }            
+        }
+        while(numOf1InArr3<arr.Length){
+            if(arr[numOf1InArr3] == arr[numOf1InArr1] && arr[numOf1InArr3] == arr[numOf1InArr2]){ //matching the Sub-array's with each other............
+                numOf1InArr1++;
+                numOf1InArr2++;
+                numOf1InArr3++;
+            }
+            else{               //if all 3 Sub-array's are not same valued than return {-1,-1}...................
+                return ans;
+            }
+        }
+        return new int[]{numOf1InArr1-1,numOf1InArr2};
+    }
+}
