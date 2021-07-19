@@ -1,0 +1,14 @@
+//concept:- We are finding the ancestor of the given nodes.
+//solution:- where the one node is small and another node is greater, that intersection point is the answer...............
+
+public class Solution {
+    public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(p.val<root.val && q.val<root.val){   //if both p and q are smaller than search will goto left side..................
+            return LowestCommonAncestor(root.left,p,q);
+        }else if(p.val>root.val && q.val>root.val){ //if both p and q are greater than search will goto right side..............
+            return LowestCommonAncestor(root.right,p,q);
+        }else{  //if 1 element is small and other is greater than this is the node which are we searching for
+            return root;
+        }
+    }
+}
