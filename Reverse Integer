@@ -1,0 +1,14 @@
+public class Solution {
+    public int Reverse(int x) {
+        var resverse=0;
+        while(x!=0)
+        {
+            var remainder = x%10;        
+            if(resverse > int.MaxValue/10 || resverse < int.MinValue/10 )
+                return 0;
+            resverse= resverse*10+ remainder;
+            x/=10;
+        }
+        return resverse;
+    }
+}
