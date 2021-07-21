@@ -1,0 +1,23 @@
+public class Solution{
+  int[] nums;
+  private Random random;
+  
+  public Solution(int[] nums){
+    this.nums = nums;
+    this.random = new Random();
+  }
+  
+  //reset function, this method maintain the original value of the array with same order.................
+  public int[] Reset(){
+    return nums;  //in this reset method return as it is given array which is 'nums'.................
+  }
+  
+  //shuffle function, this returns the shuffled value of the given array......................
+  public int[] Shuffle(){
+    int[] randomArray = nums.Clone() as int[];
+    for(int i=0; i<nums.Length; i++){
+      randomArray = nums.OrderBy(x => random.Next()).ToArray():
+    }
+    return randomArray;
+  }
+}
