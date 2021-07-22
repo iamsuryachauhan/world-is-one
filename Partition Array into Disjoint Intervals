@@ -1,0 +1,22 @@
+public class Solution{    //In this problem we have to divide array into two sub arrays such that left array's all element should be smaller than the right array's all elements....
+public int PartitionDisjoint(int[] A){
+  int n=A.Length;
+  int[] preMax=new int[n];
+  int result = n-2;
+  int postMin = A[n-1];  //storing the largest or last value of the array...........
+  
+  preMax[0] = A[0]; //storing the smallest or first element of the array...........
+  
+  for(int i=1;i<n-1;i++){
+      preMax[i] = Math.Max(preMax[i-1],A[i]); //here we are finding the max array, it is the comparision of given array and the defined array compare and find the largest one element
+    }
+    
+    for(int i=n-2;i>=0;i--){
+      if(preMax[i]<=postMin){
+        result = Math.Min(result,i);
+      }
+      postMin = Math.Min(postMin,A[i]); //with the help of postMin variable we can traver the whole array for the rear end.....
+    }
+    return result+1;
+  }
+}
