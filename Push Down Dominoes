@@ -1,0 +1,45 @@
+public class Solution {
+    public string PushDominoes(string dominoes) {
+        char[] dom = dominoes.ToCharArray(); //convert string into character wise array............
+        int N = dom.Length;
+        int[] arrForce = new int[N]; //create an array of size dominoes...................
+        
+        int force =0;
+        for(int i=0; i<N; i++){ //this loop runs from left to right and finding right forces...............
+            if(dom[i]=='R'){
+                force = N;
+            }else if(dom[i]=='L'){
+                force = 0;
+            }else{
+                force = Math.Max(force-1,0);
+            }
+            arrForce[i] = arrForce[i] + force; //storing the forces into the array...............
+        }
+        
+        //loop for right to left to measure the left force....................
+        for(int i=N-1;i>=0;i--){
+            if(dom[i]=='R'){
+                force=0;
+            }else if(dom[i]=='L'){
+                force = N;
+            }else{
+                force = Math.Max(force-1,0);
+            }
+            arrForce[i] -= force;
+        }
+        
+        //building the string using Append() for finding the output 
+        StringBuilder ans = new StringBuilder();
+        foreach(var f in arrForce){
+            if(f>0){
+                ans.Append('R');
+            }else if(f<0){
+                ans.Append('L');
+            }
+            else{
+                ans.Append('.');
+            }
+        }
+        return ans.ToString();
+    }
+}
