@@ -1,0 +1,16 @@
+public class Solution{     //Prob 108: In question a sorted given array and convert that into binary search tree with balanced heigth.......
+  public TreeNode SortedArrayToBST(int[] nums){
+    return BST(nums, 0, nums.Length-1);  // here we simple pass ther arguments array , starting index , and size of the array .............
+  }
+  public TreeNode BST(int[] arr, int startIndex, int endIndex){
+    if(startIndex > endIndex){
+    return null;
+    }
+    int mid = (startIndex + endIndex)/2;   //basically I am using an divide and finding the middle element algo bcz the given array is sorted and have to create bst.......
+    TreeNode node = new TreeNode(arr[mid]);
+    node.left = BST(arr, startIndex, mid-1);
+    node.right = BST(arr, mid+1, endIndex)
+    
+    return node;
+  }
+}
